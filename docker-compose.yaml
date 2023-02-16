@@ -17,5 +17,28 @@ services:
     ports:
       - "5432:5432"
 
+
+  api:
+    build:
+      target: dev_image
+    env_file: .env
+    restart: always
+    environment:
+      POSTGRES_HOST: db
+      DEBUG: True
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./todolist:/opt/todolist
+
+  frontend:
+    image: sermalenk/skypro-front:lesson-34
+    restart: always
+    ports:
+      - "80:80"
+
 volumes:
   diploma_pg_data:
