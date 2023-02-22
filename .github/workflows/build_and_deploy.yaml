@@ -35,24 +35,24 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: anthonykgross/ansible-vault-cli-github-action@v1
-          with:
-            vault_key: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
-            command: "ansible-vault decrypt deploy/.env"
+        with:
+          vault_key: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
+          command: "ansible-vault decrypt deploy/.env"
       - name: Copy on Server
         uses: appleboy/scp-action@master
         with:
-          host: {{ secrets.SSH_HOST }}
-          user: {{ secrets.SSH_USERNAME }}
-          password: {{ secrets.SSH_PASSWORD }}
+          host: ${{ secrets.SSH_HOST }}
+          user: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
           source: "deploy/*"
           target: "diploma"
           strip_components: 1
       - name: Run compose
         uses: appleboy/ssh-action@master
         with:
-          host: {{ secrets.SSH_HOST }}
-          user: {{ secrets.SSH_USERNAME }}
-          password: {{ secrets.SSH_PASSWORD }}
+          host: ${{ secrets.SSH_HOST }}
+          user: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd diploma
             docker-compose pull
@@ -61,8 +61,8 @@ jobs:
         if: always()
         uses: appleboy/ssh-action@master
         with:
-          host: {{ secrets.SSH_HOST }}
-          user: {{ secrets.SSH_USERNAME }}
-          password: {{ secrets.SSH_PASSWORD }}
+          host: ${{ secrets.SSH_HOST }}
+          user: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
           scripy: |
             docker system prune -a -f
