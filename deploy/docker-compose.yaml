@@ -21,7 +21,7 @@ services:
     restart: always
     environment:
       POSTGRES_HOST: db
-      DEBUG: True
+      DEBUG: "false"
     depends_on:
       db:
         condition: service_healthy
@@ -49,3 +49,4 @@ services:
 
 volumes:
   diploma_pg_data:
+  django_static:
