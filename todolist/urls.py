@@ -19,7 +19,8 @@ from django.urls import path, include
 from todolist import settings
 
 urlpatterns = [
-    path('core/', include(('todolist.core.urls', 'core'))),
+    path('core/', include(('todolist.core.urls', 'todolist.core'))),
+    path('goals/', include(('todolist.goals.urls', 'todolist.goals'))),
     path('admin/', admin.site.urls),
     path('oauth/', include('social_django.urls', namespace='social')),
 ]
