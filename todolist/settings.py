@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #Third party apps
     'rest_framework',
+    'django_filters',
     'social_django',
     #Our apps
     'todolist.core',
