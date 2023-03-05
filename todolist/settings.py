@@ -21,8 +21,8 @@ if ENV_PATH.exists() and ENV_PATH.is_file():
     env.read_envfile(ENV_PATH)
 
 SECRET_KEY = env('SECRET_KEY')
-DEBUG = env.bool('DEBUG', default=False)
-
+# DEBUG = env.bool('DEBUG', default=False)
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
