@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     #Our apps
     'todolist.core',
     'todolist.goals',
-    'todolist.bot'
+    'todolist.bot',
 ]
 
 if DEBUG:
