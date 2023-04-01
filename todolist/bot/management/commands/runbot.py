@@ -72,6 +72,7 @@ class Command(BaseCommand):
             message = 'Enter a goal title:'
             self.chosen_category = chosen_category.id
             self.create_goal = True
+            self.chat_to_create_goal = None
 
         # Send the response to the user
         self.tg_client.send_message(tg_user.chat_id, message)
