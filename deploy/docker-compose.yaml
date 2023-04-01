@@ -49,7 +49,6 @@ services:
 
   bot:
     build:
-      context: .
       target: dev_image
     env_file: .env
     environment:
