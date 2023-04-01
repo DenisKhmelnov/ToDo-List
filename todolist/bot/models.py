@@ -10,11 +10,11 @@ class TgUser(models.Model):
     verification_code = models.CharField(max_length=50, null=True, blank=True, default=None)
 
     @staticmethod
-    def _generate_verefication_code() -> str:
+    def _generate_verification_code() -> str:
         return os.urandom(12).hex()
 
-    def set_verefication_code(self) -> str:
-        code = self._generate_verefication_code()
+    def set_verification_code(self) -> str:
+        code = self._generate_verification_code()
         self.verification_code = code
         self.save(update_fields=('verification_code',))
         return code
