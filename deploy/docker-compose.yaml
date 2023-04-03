@@ -49,8 +49,6 @@ services:
 
   bot:
     image: dkhmelnov/diploma:latest
-    build:
-      target: dev_image
     env_file: .env
     environment:
       POSTGRES_HOST: db
