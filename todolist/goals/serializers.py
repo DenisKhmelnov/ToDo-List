@@ -59,35 +59,6 @@ class GoalSerializer(serializers.ModelSerializer):
 
 
 class CommentCreateSerializer(serializers.ModelSerializer):
-    # user = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    #
-    # def validate_goal(self, value: Goal):
-    #     if value.status == Goal.Status.archived:
-    #         raise ValidationError('Goal not found')
-    #     if not BoardParticipant.objects.filter(
-    #         board=value.category.board_id,
-    #         role__in=[BoardParticipant.Role.owner, BoardParticipant.Role.writer],
-    #         user_id=self.context['request'].user.id
-    #     ).exists():
-    #         raise PermissionDenied
-    #     return value
-    #
-    # class Meta:
-    #     model = GoalComment
-    #     fields = "__all__"
-    #     read_only_fields = ("id", "created", "updated", "user", "goal")
-    #     depth = 1
-
-    # class Meta:
-    #     model = GoalComment
-    #     fields = ['goal', 'text']
-    #
-    # def create(self, validated_data):
-    #     user = self.context['request'].user
-    #     goal_comment = GoalComment.objects.create(
-    #         user=user, **validated_data
-    #     )
-    #     return goal_comment
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     def validate_goal(self, value):
@@ -125,7 +96,7 @@ class CommentSerializer(serializers.ModelSerializer):
 class BoardCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
-        read_only_fields = ("id", "created", "updated")
+        read_only_fields = ("id", "created", "updated", "is_deleted")
         fields = "__all__"
 
 

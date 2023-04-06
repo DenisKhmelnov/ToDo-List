@@ -181,7 +181,9 @@ LOGGING = {
     },
     'loggers': {
         '': {
-            'level': 'DEBUG' if DEBUG else 'INFO',
+            # отображает все сообщения логгера при запуске тестов и т.д.
+            # 'level': 'DEBUG' if DEBUG else 'INFO',
+            'level': 'INFO',
             'handlers': ['console'],
         },
         'django.server': {'handlers': ['null']},
