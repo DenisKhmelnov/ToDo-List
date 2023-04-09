@@ -14,6 +14,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='goalcategory',
             name='board',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='categories', to='goals.board', verbose_name='Доска'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT,
+                                    related_name='categories',
+                                    to='goals.board',
+                                    verbose_name='Доска'),
         ),
     ]

@@ -18,7 +18,7 @@ class TgClient:
         self.logger = logging.getLogger(__name__)
 
     def get_url(self, method: str) -> str:
-        return f"https://api.telegram.org/bot{self.token}/{method}"
+        return f'https://api.telegram.org/bot{self.token}/{method}'
 
     def get_updates(self, offset: int = 0, timeout: int = 60) -> GetUpdatesResponse:
         data = self._get(Command.GET_UPDATES, offset=offset, timeout=timeout)
@@ -27,7 +27,6 @@ class TgClient:
     def send_message(self, chat_id: int, text: str) -> SendMessageResponse:
         data = self._get(Command.SEND_MESSAGE, chat_id=chat_id, text=text)
         return SendMessageResponse(**data)
-
 
     def _get(self, command: Command, **params):
         url = self.get_url(command)

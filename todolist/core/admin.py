@@ -18,4 +18,5 @@ class CustomUserAdmin(UserAdmin):
         ('Special dates', {'fields': ('last_login', 'date_joined')})
     )
 
+
 admin.site.unregister(Group)

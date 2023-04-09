@@ -2,13 +2,13 @@ from django.db import transaction
 from django.db.models import QuerySet
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework import permissions, filters
-
+from rest_framework import filters, permissions
 from todolist.goals.filters import GoalDateFilter
-from todolist.goals.models import GoalCategory, Goal, GoalComment, BoardParticipant, Board
-from todolist.goals.permissions import BoardPermissions, GoalCategoryPermissions, GoalPermissions, GoalCommentsPermissions
-from todolist.goals.serializers import GoalCategoryCreateSerializer, GoalCategorySerializer, GoalCreateSerializer, \
-    GoalSerializer, CommentCreateSerializer, CommentSerializer, BoardCreateSerializer, BoardSerializer
+from todolist.goals.models import BoardParticipant, Board, Goal, GoalCategory, GoalComment
+from todolist.goals.permissions import BoardPermissions, GoalCategoryPermissions, GoalPermissions, \
+    GoalCommentsPermissions
+from todolist.goals.serializers import BoardCreateSerializer, BoardSerializer, GoalCategoryCreateSerializer, \
+    GoalCategorySerializer, GoalCreateSerializer, GoalSerializer, CommentCreateSerializer, CommentSerializer
 
 
 class BoardCreateView(CreateAPIView):
@@ -31,6 +31,7 @@ class BoardListView(ListAPIView):
             participants__user_id=self.request.user.id,
             is_deleted=False
         )
+
 
 class BoardView(RetrieveUpdateDestroyAPIView):
     permission_classes = [BoardPermissions]
@@ -62,9 +63,9 @@ class GoalCategoryListView(ListAPIView):
         filters.OrderingFilter,
         filters.SearchFilter
     ]
-    ordering_fields = ["title", "created"]
-    ordering = ["title"]
-    search_fields = ["title"]
+    ordering_fields = ['title', 'created']
+    ordering = ['title']
+    search_fields = ['title']
 
     def get_queryset(self):
         return GoalCategory.objects.filter(
@@ -103,9 +104,9 @@ class GoalListView(ListAPIView):
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
     filterset_class = GoalDateFilter
 
-    ordering_fields = ["title", "created"]
-    ordering = ["title"]
-    search_fields = ["title", "description"]
+    ordering_fields = ['title', 'created']
+    ordering = ['title']
+    search_fields = ['title', 'description']
 
     def get_queryset(self) -> QuerySet[Goal]:
         return Goal.objects.filter(
@@ -142,10 +143,10 @@ class CommentListView(ListAPIView):
 
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['goal']
-    ordering = ["-created"]
+    ordering = ['-created']
 
     def get_queryset(self):
-        return GoalComment.objects.\
+        return GoalComment.objects. \
             filter(goal__category__board__participants__user_id=self.request.user.id)
 
 

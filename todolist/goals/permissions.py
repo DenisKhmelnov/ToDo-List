@@ -1,5 +1,4 @@
 from rest_framework import permissions
-
 from todolist.goals.models import BoardParticipant, Board, GoalCategory, Goal, GoalComment
 
 
@@ -34,5 +33,5 @@ class GoalPermissions(permissions.IsAuthenticated):
 
 
 class GoalCommentsPermissions(permissions.IsAuthenticated):
-    def has_object_permission(self, request, view, obj:GoalComment):
+    def has_object_permission(self, request, view, obj: GoalComment):
         return request.method in permissions.SAFE_METHODS or obj.user_id == request.user.id

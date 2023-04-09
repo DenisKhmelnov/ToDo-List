@@ -32,6 +32,9 @@ MANIFEST
 *.manifest
 *.spec
 
+# Pre-commit
+.pre-commit-config.yaml
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt

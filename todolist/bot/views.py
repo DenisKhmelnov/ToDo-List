@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -10,7 +9,7 @@ from todolist.bot.tg.client import TgClient
 
 
 class VerificationView(GenericAPIView):
-    model =TgUser
+    model = TgUser
     permission_classes = [IsAuthenticated]
     serializer_class = TgUserSerializer
 
