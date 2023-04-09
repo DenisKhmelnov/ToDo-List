@@ -1,6 +1,6 @@
 from django.db import transaction
 from rest_framework import serializers
-from rest_framework.exceptions import PermissionDenied, ValidationError
+from rest_framework.exceptions import PermissionDenied
 
 from todolist.core.models import User
 from todolist.core.serializers import ProfileSerializer

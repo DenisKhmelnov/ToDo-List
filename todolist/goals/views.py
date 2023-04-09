@@ -1,10 +1,14 @@
+from django.db import transaction
 from django.db.models import QuerySet
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework import filters
+from rest_framework import filters, permissions
 from todolist.goals.filters import GoalDateFilter
-from todolist.goals.permissions import *
-from todolist.goals.serializers import *
+from todolist.goals.models import BoardParticipant, Board, Goal, GoalCategory, GoalComment
+from todolist.goals.permissions import BoardPermissions, GoalCategoryPermissions, GoalPermissions, \
+    GoalCommentsPermissions
+from todolist.goals.serializers import BoardCreateSerializer, BoardSerializer, GoalCategoryCreateSerializer, \
+    GoalCategorySerializer, GoalCreateSerializer, GoalSerializer, CommentCreateSerializer, CommentSerializer
 
 
 class BoardCreateView(CreateAPIView):

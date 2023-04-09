@@ -28,7 +28,6 @@ class TgClient:
         data = self._get(Command.SEND_MESSAGE, chat_id=chat_id, text=text)
         return SendMessageResponse(**data)
 
-
     def _get(self, command: Command, **params):
         url = self.get_url(command)
         response = requests.get(url, params=params)

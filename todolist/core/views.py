@@ -2,7 +2,7 @@ from typing import Any
 
 from django.contrib.auth import login, logout
 from django.db.models import QuerySet
-from rest_framework import generics, permissions
+from rest_framework import generics
 from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response

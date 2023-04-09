@@ -25,6 +25,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
         validated_data['password'] = make_password(validated_data['password'])
         return super().create(validated_data)
 
+
 class LoginSerializer(serializers.ModelSerializer):
     username = serializers.CharField(required=True)
     password = PasswordField(required=True)
@@ -44,6 +45,7 @@ class LoginSerializer(serializers.ModelSerializer):
             raise AuthenticationFailed
         return user
 
+
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -61,5 +63,5 @@ class UpdatePasswordSerializer(serializers.Serializer):
 
     def update(self, instance: User, validated_data: dict) -> User:
         instance.set_password(validated_data['new_password'])
-        instance.save(update_fields=('password', ))
+        instance.save(update_fields=('password',))
         return instance

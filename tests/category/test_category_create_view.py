@@ -2,7 +2,7 @@ from typing import Callable
 import pytest
 from django.urls import reverse
 from rest_framework import status
-from todolist.goals.models import Board, BoardParticipant, GoalCategory
+from todolist.goals.models import GoalCategory
 
 
 @pytest.fixture()
@@ -12,7 +12,9 @@ def category_create_data(faker, board) -> Callable:
                 'board': board.id}
         data |= kwargs
         return data
+
     return _wrapper
+
 
 @pytest.mark.django_db
 class TestBoardCreateView:
