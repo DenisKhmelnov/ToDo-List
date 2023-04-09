@@ -1,14 +1,10 @@
-from django.db import transaction
 from django.db.models import QuerySet
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework import permissions, filters
-
+from rest_framework import filters
 from todolist.goals.filters import GoalDateFilter
-from todolist.goals.models import GoalCategory, Goal, GoalComment, BoardParticipant, Board
-from todolist.goals.permissions import BoardPermissions, GoalCategoryPermissions, GoalPermissions, GoalCommentsPermissions
-from todolist.goals.serializers import GoalCategoryCreateSerializer, GoalCategorySerializer, GoalCreateSerializer, \
-    GoalSerializer, CommentCreateSerializer, CommentSerializer, BoardCreateSerializer, BoardSerializer
+from todolist.goals.permissions import *
+from todolist.goals.serializers import *
 
 
 class BoardCreateView(CreateAPIView):
@@ -31,6 +27,7 @@ class BoardListView(ListAPIView):
             participants__user_id=self.request.user.id,
             is_deleted=False
         )
+
 
 class BoardView(RetrieveUpdateDestroyAPIView):
     permission_classes = [BoardPermissions]
@@ -145,7 +142,7 @@ class CommentListView(ListAPIView):
     ordering = ["-created"]
 
     def get_queryset(self):
-        return GoalComment.objects.\
+        return GoalComment.objects. \
             filter(goal__category__board__participants__user_id=self.request.user.id)
 
 

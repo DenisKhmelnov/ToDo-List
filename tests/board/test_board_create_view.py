@@ -1,9 +1,7 @@
 from typing import Callable
-
 import pytest
 from django.urls import reverse
 from rest_framework import status
-
 from todolist.goals.models import Board, BoardParticipant
 
 
@@ -13,7 +11,9 @@ def board_create_data(faker) -> Callable:
         data = {'title': faker.sentence(2)}
         data |= kwargs
         return data
+
     return _wrapper
+
 
 @pytest.mark.django_db
 class TestBoardCreateView:
@@ -28,15 +28,14 @@ class TestBoardCreateView:
 
     def test_failed_to_create_deleted_board(self, auth_client, board_create_data):
         """
-        Test that it is not possible to create a board with a title of a deleted board
+        Test that it is not possible to create a board with a deleted tag
         """
         response = auth_client.post(self.url, data=board_create_data(is_deleted=True))
         assert response.status_code == status.HTTP_201_CREATED
         assert response.json()['is_deleted'] is False
         assert Board.objects.last().is_deleted is False
 
-
-    def test_request_user_became_board_owner(self, auth_client, user,  board_create_data):
+    def test_request_user_became_board_owner(self, auth_client, user, board_create_data):
         """
         Test that the user who created the board becomes its owner
         """

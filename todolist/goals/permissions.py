@@ -1,5 +1,4 @@
 from rest_framework import permissions
-
 from todolist.goals.models import BoardParticipant, Board, GoalCategory, Goal, GoalComment
 
 
