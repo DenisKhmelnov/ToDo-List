@@ -4,8 +4,8 @@ from todolist.goals.models import GoalCategory, GoalComment, Goal
 
 @admin.register(GoalCategory)
 class GoalCategoryAdmin(admin.ModelAdmin):
-    list_display = ("title", "user", "created", "updated")
-    search_fields = ("title", "user__username")
+    list_display = ('title', 'user', 'created', 'updated')
+    search_fields = ('title', 'user__username')
 
 
 @admin.register(GoalComment)
@@ -16,5 +16,5 @@ class GoalCommentAdmin(admin.ModelAdmin):
 
 @admin.register(Goal)
 class GoalAdmin(admin.ModelAdmin):
-    list_display = ("title", "user", "created", "updated")
+    list_display = ('title', 'user', 'created', 'updated')
     search_fields = ('title', 'description')

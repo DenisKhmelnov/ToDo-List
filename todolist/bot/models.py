@@ -18,4 +18,3 @@ class TgUser(models.Model):
         self.verification_code = code
         self.save(update_fields=('verification_code',))
         return code
-

@@ -59,9 +59,9 @@ class GoalCategoryListView(ListAPIView):
         filters.OrderingFilter,
         filters.SearchFilter
     ]
-    ordering_fields = ["title", "created"]
-    ordering = ["title"]
-    search_fields = ["title"]
+    ordering_fields = ['title', 'created']
+    ordering = ['title']
+    search_fields = ['title']
 
     def get_queryset(self):
         return GoalCategory.objects.filter(
@@ -100,9 +100,9 @@ class GoalListView(ListAPIView):
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
     filterset_class = GoalDateFilter
 
-    ordering_fields = ["title", "created"]
-    ordering = ["title"]
-    search_fields = ["title", "description"]
+    ordering_fields = ['title', 'created']
+    ordering = ['title']
+    search_fields = ['title', 'description']
 
     def get_queryset(self) -> QuerySet[Goal]:
         return Goal.objects.filter(
@@ -139,7 +139,7 @@ class CommentListView(ListAPIView):
 
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['goal']
-    ordering = ["-created"]
+    ordering = ['-created']
 
     def get_queryset(self):
         return GoalComment.objects. \
